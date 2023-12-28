@@ -51,8 +51,8 @@ RUN pip install --no-cache /wheels/*
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g'  $APP_HOME/entrypoint.sh
-RUN chmod +x  $APP_HOME/entrypoint.sh
+RUN sed -i 's/\r$//g'  /home/django/entrypoint.sh
+RUN chmod +x  /home/django/entrypoint.sh
 
 # copy project
 # COPY ./saloncrm $APP_HOME/saloncrm
