@@ -17,13 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
 from app import settings
-from core.urls import router as core_router
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),
     path('api/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/', include(core_router.urls)),
+    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs'),
+    path('api/docs/swagger/', SpectacularSwaggerView.as_view(url_name='api-schema'), name='api-docs-swagger'),
+    path('api/docs/redoc/', SpectacularRedocView.as_view(url_name='api-schema'), name='api-docs-redoc'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
