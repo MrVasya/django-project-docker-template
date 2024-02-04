@@ -1,15 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+
 from core import views
-from rest_framework import routers
-from core.rest_views import CompanyViewSet
+from core.api.urls import urlpatterns as api_urlpatterns
 
 
 app_name = "shared"
 
-router = routers.SimpleRouter()
-router.register(r"companies", CompanyViewSet)
-
 
 urlpatterns = [
+    path("api/", include(api_urlpatterns), name="api"),
     path("hello/", views.hello, name="hello"),
 ]

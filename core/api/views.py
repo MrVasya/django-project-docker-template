@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from core.models import Company
-from core.serializers import CompanySerializer
-from core.permissions import HasStaffPermission
+from core.api.serializers import CompanySerializer
+from core.api.permissions import HasStaffPermission
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
