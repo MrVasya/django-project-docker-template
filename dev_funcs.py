@@ -2,7 +2,7 @@ from django.core.management.utils import get_random_secret_key
 import os
 
 
-def main():
+def regenerate_secret_key():
     secret_key = get_random_secret_key()
     path = os.path.join(os.getcwd(), ".env.web")
     print(f'Writing new secret key to {path}')
@@ -15,6 +15,3 @@ def main():
     with open(path, "w") as file:
         file.writelines(lines)
 
-
-if __name__ == '__main__':
-    main()
